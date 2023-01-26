@@ -8,6 +8,10 @@ npm install electron-packager -g
 electron-packager .
 ```
 
+## To Build for Linux or Windows
+
+See the detailed instructions in the docs [here](https://www.electronjs.org/docs/latest/tutorial/tutorial-packaging).
+
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
 ## Resources for Learning Electron
