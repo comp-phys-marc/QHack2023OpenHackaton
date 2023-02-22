@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# electron
+editor/electron-quick-start-darwin-x64
