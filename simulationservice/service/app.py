@@ -3,7 +3,6 @@ import signal
 import os
 from flask import Flask, request, abort
 from flask_cors import CORS
-from kombu import Queue
 from auth import AuthGuard, REFRESH_TOKEN_KEY, TOKEN_KEY, ExpiredSignatureError
 from gevent import monkey
 from gevent.pywsgi import WSGIServer
