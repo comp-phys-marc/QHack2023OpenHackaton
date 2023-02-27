@@ -23,7 +23,7 @@ function syntaxHighlight(json) {
 function remoteExecute(block, callback, failCallback) {
     alert("remote execute");
     $('#loading-div').show();
-    $.post('http://120.0.0.1:5000/simulate',
+    $.post('http://127.0.0.1:5000/simulate',
         {
             code: block
         })
@@ -67,7 +67,7 @@ $(document).ready(function(){
                     blackbirdBlock += [blackbirdLine];
                 }, function(data) {
                     // If we can't, we'll try to execute it as JavaScript
-                    if (data.error == " The following exception occurred during the execution of your program - \nNot Blackbird Code") {
+                    if ("is not a valid Blackbird symbol" in data.error || data.status == 400) {
                         javascriptBlock += [line];
                     }
                 });
