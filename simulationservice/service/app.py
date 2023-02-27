@@ -24,20 +24,14 @@ supported_backends = ["fock", "gaussian"]
 @app.route("/simulate", methods=["POST"])
 def simulate():
     data = request.json
+
+    print(data)
     response = {"result": None, "error": None, "status": None}
     if "code" not in data:
         response["status"] = 400
         response["error"] = "No code given to execute"
         return json.dumps(response)
-    # try:
-    #     user_id = AuthGuard.authenticate(data)
-    # except Exception as ex:
-    #     abort(401)
 
-    # should be a LIST OF LINES
-    # {
-    #  "code" : ["a", "b", "c"]
-    # }
     sent_code = data["code"]
 
     response["status"] = 200
@@ -85,65 +79,6 @@ def simulate():
 
     os.remove("temp.xbb")
     return json.dumps(response)
-
-
-# @app.route('/auth', methods=['POST', 'PUT'])
-# def auth():
-#     print(request.data, sys.stderr)
-
-#     data = json.loads(request.data.decode("utf-8"))
-
-#     if request.method == 'POST':
-#         response, status = new_auth_response(data)
-#         return response, status
-
-#     elif request.method == 'PUT':
-
-#         old_auth_token = data[TOKEN_KEY]
-
-#         try:
-
-#             if REFRESH_TOKEN_KEY in data:
-#                 refresh_token = data[REFRESH_TOKEN_KEY]
-#             else:
-#                 raise Exception
-
-#             decoded_auth_token = AuthGuard.decode_token(old_auth_token)
-
-#             try:
-#                 AuthGuard.check_token_expired(old_auth_token)
-
-#             except ExpiredSignatureError:
-
-#                 decoded_refresh_token = AuthGuard.decode_token(refresh_token)
-
-#                 if not decoded_refresh_token[TOKEN_KEY] == old_auth_token \
-#                         or AuthGuard.check_token_expired(refresh_token):
-#                     raise Exception
-
-#             user_id = str(decoded_auth_token['id'])
-#             user = # TODO: get DEFAULT_USER
-
-#             if user is not None:
-#                 return json.dumps(AuthGuard.auth_response(user['data'])), 200
-#             else:
-#                 abort(403)
-
-#         except Exception as ex:
-#             print(str(ex))
-#             abort(401)
-
-
-# def new_auth_response(user_data):
-#     username = user_data['name']
-#     password = user_data['password']
-#     # response = TODO: login(username, password)
-
-#     if 'data' in response.keys():
-#         user = response['data']
-#         return json.dumps(AuthGuard.auth_response(user)), response['status']
-#     else:
-#         return json.dumps(response), response['status']
 
 
 def _signal_handler(param1, param2):
