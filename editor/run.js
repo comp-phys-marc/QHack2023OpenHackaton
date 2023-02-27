@@ -1,4 +1,3 @@
-const blackbird = require('blackbird-ts');
 const editor = $('#code-editor');
 const codeDebugger = $('#code-debugger');
 
@@ -21,30 +20,38 @@ function syntaxHighlight(json) {
     });
 }
 
-function remoteExecute(block) {
+function remoteExecute(block, callback, failCallback) {
+    alert("remote execute");
     $('#loading-div').show();
-    $.post('https://120.0.0.1:5000/simulate',
+    $.post('http://120.0.0.1:5000/simulate',
         {
             code: block
         })
         .done(function (data) {
+            alert(JSON.stringify(data, null, 4));
             $('#sfdev-container').append("<div class='widget-wrapper'>" + syntaxHighlight(JSON.stringify(data, undefined, 4)) + "</div>");
+            callback(data);
+            $('#loading-div').hide();
         })
         .fail(function(data){
+            alert(JSON.stringify(data, null, 4));
             if(data.hasOwnProperty('error')){
-                alert(data.error);
+                alert(JSON.stringify(data.error, null, 4));
             }
+            failCallback(data);
+            $('#loading-div').hide();
         }
     );
 }
 
 $(document).ready(function(){
+    alert("ready");
     $('#run-code').on('click', function(){
+        alert("running...");
         codeDebugger.text("");
         let blackbirdBlocks = {};
         let javascriptBlocks = {};
         try {
-            const parse = blackbird.parseString;
             let blackbirdBlock = [];
             let javascriptBlock = [];
             for (let line of editor.text().split("\n")) {
@@ -55,13 +62,15 @@ $(document).ready(function(){
                     javascriptBlocks[Object.keys(javascriptBlocks).length] = javascriptBlock;
                     javascriptBlock = [];
                 }
-                try {
-                    let blackbirdLine = parse(line);
+                // Try to execute the line as BlackBird
+                remoteExecute([line], function(data) {
                     blackbirdBlock += [blackbirdLine];
-                }
-                catch {
-                    javascriptBlock += [line];
-                }
+                }, function(data) {
+                    // If we can't, we'll try to execute it as JavaScript
+                    if (data.error == " The following exception occurred during the execution of your program - \nNot Blackbird Code") {
+                        javascriptBlock += [line];
+                    }
+                });
             }
         } catch (e) {
             alert(e.message);
@@ -76,7 +85,7 @@ $(document).ready(function(){
 
         for (let blockId of Object.keys(javascriptBlocks)) {
             let res = eval(javascriptBlocks[blockId]);
-            codeDebugger.text(res);
+            codeDebugger.text(codeDebugger.text() + res + "\n\n");
         }
     });
 });

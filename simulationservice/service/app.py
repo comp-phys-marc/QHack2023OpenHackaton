@@ -1,6 +1,7 @@
 import json
 import signal
 import os
+import sys
 from flask import Flask, request, abort
 from flask_cors import CORS
 from gevent import monkey
@@ -21,6 +22,7 @@ supported_backends = ["fock", "gaussian"]
 @app.route("/simulate", methods=["POST"])
 def simulate():
     data = request.json
+    print(f"Simulating: {data}", file=sys.stdout)
     response = {"result": None, "error": None, "status": None}
     if "code" not in data:
         response["status"] = 400
@@ -77,6 +79,7 @@ def simulate():
         ] = f" The following exception occurred during the execution of your program - \n{err}"
 
     os.remove("temp.xbb")
+    print(response, file=sys.stdout)
     return json.dumps(response)
 
 
