@@ -21,10 +21,10 @@ supported_backends = ["fock", "gaussian"]
 
 @app.route("/simulate", methods=["POST"])
 def simulate():
-    data = request.json
-    print(f"Simulating: {data}", file=sys.stdout)
+    data = request.form.to_dict(flat=False)
+    print(data)
     response = {"result": None, "error": None, "status": None}
-    if "code" not in data:
+    if "code[]" not in data:
         response["status"] = 400
         response["error"] = "No code given to execute"
         return json.dumps(response)
@@ -33,7 +33,7 @@ def simulate():
     # {
     #  "code" : ["a", "b", "c"]
     # }
-    sent_code = data["code"]
+    sent_code = data["code[]"]
 
     response["status"] = 200
 
