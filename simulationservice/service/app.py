@@ -1,12 +1,11 @@
 import json
 import signal
 import os
+import sys
 from flask import Flask, request, abort
 from flask_cors import CORS
-from auth import AuthGuard, REFRESH_TOKEN_KEY, TOKEN_KEY, ExpiredSignatureError
 from gevent import monkey
 from gevent.pywsgi import WSGIServer
-from settings import Settings
 
 import strawberryfields as sf
 
@@ -15,7 +14,6 @@ monkey.patch_all()
 # Application specific
 app = Flask(__name__)
 CORS(app)
-settings = Settings()
 
 # Supporting backends
 supported_backends = ["fock", "gaussian"]
@@ -23,16 +21,19 @@ supported_backends = ["fock", "gaussian"]
 
 @app.route("/simulate", methods=["POST"])
 def simulate():
-    data = request.json
-
+    data = request.form.to_dict(flat=False)
     print(data)
     response = {"result": None, "error": None, "status": None}
-    if "code" not in data:
+    if "code[]" not in data:
         response["status"] = 400
         response["error"] = "No code given to execute"
         return json.dumps(response)
 
-    sent_code = data["code"]
+    # should be a LIST OF LINES
+    # {
+    #  "code" : ["a", "b", "c"]
+    # }
+    sent_code = data["code[]"]
 
     response["status"] = 200
 
@@ -78,6 +79,7 @@ def simulate():
         ] = f" The following exception occurred during the execution of your program - \n{err}"
 
     os.remove("temp.xbb")
+    print(response, file=sys.stdout)
     return json.dumps(response)
 
 

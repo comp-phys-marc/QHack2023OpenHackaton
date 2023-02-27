@@ -1,0 +1,21 @@
+name StateTeleportation
+version 1.0
+target gaussian (shots=1)
+Coherent(0.5) | 0
+Squeezed(-4) | 1
+Squeezed(4) | 2
+BSgate(pi/4, 0) | (1, 2)
+BSgate(pi/4, 0) | (0, 1)
+MeasureX | 0
+MeasureP | 1
+Xgate(sqrt(2)*q0) | 2
+Zgate(sqrt(2)*q1) | 2
+MeasureHeterodyne() | 2
+
+let res = [
+    [
+        "3.4740910427379283+j0.0", 
+        "26.321266736967612+j0.0",
+        "1.432072271599756+j-0.7226496907045564"
+    ]
+];

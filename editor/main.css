@@ -157,21 +157,6 @@ body{
     color: #909090;
 }
 
-.editor {
-    z-index: 1;
-    background: none;
-    color: white;  /* change [input cursor color] by this*/
-    text-shadow: 0px 0px 0px transparent; /* change [input font] by this*/
-    -webkit-text-fill-color: transparent;
-    padding: 20px !important;
-    height: 55vh;
-}
-
-.editor * {
-    background: none;
-    text-shadow: none;
-}
-
 .result {
     border: solid 1px #333;
     z-index: -1;
