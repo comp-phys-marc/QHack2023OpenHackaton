@@ -28,11 +28,22 @@ pre {
 }
 
 .debug-row {
-    padding-left: 0.5vw;
+    margin-left: 30px;
+}
+
+.editor-row p {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.debug-row p {
+    margin-top: 10px;
+    margin-left: 30px;
+    color: white;
 }
 
 .editor-row {
-    padding-left: 0.5vw;
+    margin-left: 30px;
 }
 
 #run-code {
@@ -45,6 +56,7 @@ pre {
 
 #open-file-manager {
     cursor: pointer;
+    margin-left: 10px;
 }
 
 #logo-name {
