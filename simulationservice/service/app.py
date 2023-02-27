@@ -28,7 +28,7 @@ def simulate():
         response["status"] = 400
         response["error"] = "No code given to execute"
         return json.dumps(response)
-    
+
     # should be a LIST OF LINES
     # {
     #  "code" : ["a", "b", "c"]
