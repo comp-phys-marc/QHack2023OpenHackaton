@@ -8,33 +8,33 @@
     <title>SFDev</title>
   </head>
   <body>
-  <nav id="top-bar" class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <div class="row">
-      <a class="navbar-brand inline" id="logo-name" href="#">SF Dev<p class="inline little"> JS and BlackBird Hybrid Code Editor</p></a>
-    </div>
-    <div class="row">
-      <small id="open-file-manager">Open</small>
-    </div>
-  </nav>
-  <div class="row">
-    <div class="col-md-11 col-sm-11 col-xs-11 col-lg-11">
-      <div class="row editor-row">
-        <p>Input</p>
-        <pre id="code-editor" class="code-editable editor" contenteditable="true">
-// Open a file or start typing your SF / JS here!
-// Run your code and see the results.
-        </pre>
-        <pre style="display:none;" class="code-editable result"></pre>
+    <nav id="top-bar" class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <div class="row">
+        <a class="navbar-brand inline" id="logo-name" href="#">SF Dev<p class="inline little"> JS and BlackBird Hybrid Code Editor</p></a>
       </div>
       <div class="row">
-        <button id="run-code">Run >></button>
+        <small id="open-file-manager">Open</small>
       </div>
-      <div class="row debug-row">
-        <p>Output</p>
-        <pre id="code-debugger" class="code-editable"></pre>
+    </nav>
+    <div class="row">
+      <div class="col-md-11 col-sm-11 col-xs-11 col-lg-11">
+        <div class="row editor-row">
+          <p>Input</p>
+          <pre id="code-editor" class="code-editable editor" contenteditable="true">
+// Open a file or start typing your SF / JS here!
+// Run your code and see the results.
+          </pre>
+          <pre style="display:none;" class="code-editable result"></pre>
+        </div>
+        <div class="row">
+          <button id="run-code">Run >></button>
+        </div>
+        <div class="row debug-row">
+          <p>Output</p>
+          <pre id="code-debugger" class="code-editable"></pre>
+        </div>
       </div>
     </div>
-  </div>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="./jquery.min.js"></script>
     <script src="./bootstrap.min.js"></script>

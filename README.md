@@ -27,6 +27,9 @@ Running the code:
 ![run](design/3.png)
 ![result](design/4.png)
 
+Viewing the output:
+![out](design/5.png)
+
 ### Usage Info 
  Currently our application is supported over the **MacOS** and the installation instructions are as follows - 
 

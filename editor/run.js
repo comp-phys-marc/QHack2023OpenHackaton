@@ -21,6 +21,7 @@ function remoteExecute(block, callback, failCallback) {
 }
 
 $(document).ready(function(){
+    alert("Application ready");
     $('#run-code').on('click', function(){
         codeDebugger.text("");
 
@@ -52,9 +53,7 @@ $(document).ready(function(){
         for (let blockId of Object.keys(blackbirdBlocks)) {
             alert("Simulating: \n" + blackbirdBlocks[blockId]);
             remoteExecute(blackbirdBlocks[blockId], function(data) {
-                if (data.status == 200) {
-                    codeDebugger.text(codeDebugger.text() + JSON.stringify(data, null, 4) + "\n\n");
-                }
+                codeDebugger.text(codeDebugger.text() + JSON.stringify(data, null, 4) + "\n\n");
             });
         }
 
