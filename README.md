@@ -6,29 +6,39 @@ This is a project developed for the **Xanadu QHack 2023** *Hybrid Quantum-Classi
 The editor expects 1 Blackbird block followed by 1 JS block. Both are executed, one with the help of a StrawberryFields based backend API and one using eval() in the frontend. Both may be edited together in one editor application where the results of their executions may also be viewed.
 
 ### Design
+<p float="left">
+<img src="design/Frame_2.png" width="47%" height="20%">
+<img src="design/Frame_10.png" width="47%" height="20%">
+ </p>
 
-![2](design/Frame_2.png)
-![10](design/Frame_10.png)
-![11](design/Frame_11.png)
-![14](design/Frame_14.png)
+<p float="left">
+<img src="design/Frame_11.png" width="47%" height="20%">
+<img src="design/Frame_14.png" width="32%" height="10%">
+ </p>
 
 ### App Demo 
+<img src="design/qhack-23-final.gif" width="80%" height="30%">
 
-The StrawberryFields / JS editor:
-![start](design/0.png)
 
-Opening a file:
-![open](design/1.png)
+**<p>1. The StrawberryFields / JS editor</p>**
+<img src="design/0.png" height="30%" width="70%" alt="Editor">
 
-Editing a file containing a Blackbird followed by a JS block:
-![edit](design/2.png)
+**<p>2. Opening a file in Editor</p>**
+<img src="design/1.png" height="30%" width="70%" alt="Open">
 
-Running the code:
-![run](design/3.png)
-![result](design/4.png)
+**<p>3. Editing a file containing a Blackbird followed by a JS block</p>**
+<img src="design/2.png" height="30%" width="70%" alt="Edit">
 
-Viewing the output:
-![out](design/5.png)
+
+**<p>4. Running the code</p>**
+<p float="left">
+<img src="design/3.png" width="41%" height="23%">
+<img src="design/4.png" width="47%" height="35%">
+ </p>
+ 
+ 
+**<p>5. Viewing the output</p>**
+<img src="design/5.png" height="30%" width="70%" alt="Edit">
 
 ### Usage Info 
  Currently our application is supported over the **MacOS** and the installation instructions are as follows - 
