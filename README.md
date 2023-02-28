@@ -72,6 +72,8 @@ electron-packager .
 ### Future Scope 
 
 - Support multiple blocks of each of SF and JS code
+- Extend functionalities to remotely execute code on Pennylane QPUs
+- Add support for `Windows` and `Linux` 
  
 ### Team - <font color = 'purple'>Q I/O</font>
 
